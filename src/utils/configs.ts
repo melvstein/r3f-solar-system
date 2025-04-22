@@ -1,0 +1,1 @@
+export const adjustSpeed = 0.5;

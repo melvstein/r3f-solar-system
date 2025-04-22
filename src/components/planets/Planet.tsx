@@ -2,6 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { forwardRef, RefObject, useEffect, useRef } from "react";
 import { DoubleSide, Mesh } from "three";
 import { TMoon, TPlanet, TRing } from "../../utils/types";
+import { adjustSpeed } from "../../utils/configs";
 
 type PlanetProps = {
 	planet: TPlanet;
@@ -18,8 +19,6 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
     }, [meshRef]);
 
     useFrame((state, delta) => {
-        const adjustSpeed = 0.05;
-
         meshRef.current.rotation.y += planet.speed * adjustSpeed;
         meshRef.current.position.x = Math.sin(meshRef.current.rotation.y) * planet.distance;
         meshRef.current.position.z = Math.cos(meshRef.current.rotation.y) * planet.distance;
@@ -49,8 +48,6 @@ const Moon = ({ moon }: { moon: TMoon }) => {
 	const moonRef = useRef<Mesh>(null);
 
 	useFrame((state, delta) => {
-        const adjustSpeed = 0.05;
-
 		if (moonRef.current) {
 			moonRef.current.rotation.y += moon.speed * adjustSpeed;
 			moonRef.current.position.x = Math.sin(moonRef.current.rotation.y) * moon.distance;

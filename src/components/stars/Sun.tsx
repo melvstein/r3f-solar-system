@@ -3,6 +3,7 @@ import { TStar } from "../../utils/types";
 import { forwardRef, RefObject } from "react";
 import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";
+import { adjustSpeed } from "../../utils/configs";
 
 const Sun = forwardRef<Mesh, {}>((_, ref) => {
     const meshRef = ref as RefObject<Mesh>;
@@ -16,8 +17,6 @@ const Sun = forwardRef<Mesh, {}>((_, ref) => {
     };
 
     useFrame((state, delta) => {
-        const adjustSpeed = 0.05;
-
         meshRef.current.rotateY(sun.rotationSpeed * adjustSpeed);
     });
 
