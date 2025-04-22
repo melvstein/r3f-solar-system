@@ -4,23 +4,23 @@ import { TPlanet } from "../../utils/types";
 import Planet from "./Planet";
 import { useTexture } from "@react-three/drei";
 
-const Mercury = forwardRef<Mesh, {}>((_, ref) => {
+const Venus = forwardRef<Mesh, {}>((_, ref) => {
     const meshRef = ref as RefObject<Mesh>;
-    const mercuryTexture = useTexture('/assets/textures/2k_mercury.jpg');
+    const venusTexture = useTexture('/assets/textures/2k_venus.jpg');
 
     const planet: TPlanet = {
-        name: "Mercury",
-        radius: 0.5,
-        distance: 10,
-        speed: 0.017,
+        name: "Venus",
+        radius: 0.9,
+        distance: 18,
+        speed: 0.012,
         ring: null,
         moons: [],
-        texture: mercuryTexture,
-    };
+        texture: venusTexture,
+      };
 
     return (
         <Planet ref={meshRef} planet={planet} />
     );
 });
 
-export default Mercury;
+export default Venus;

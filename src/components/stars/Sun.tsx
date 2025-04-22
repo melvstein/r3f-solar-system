@@ -16,7 +16,9 @@ const Sun = forwardRef<Mesh, {}>((_, ref) => {
     };
 
     useFrame((state, delta) => {
-        meshRef.current.rotateY(sun.rotationSpeed * delta);
+        const adjustSpeed = 0.05;
+
+        meshRef.current.rotateY(sun.rotationSpeed * adjustSpeed);
     });
 
     return (

@@ -57,9 +57,11 @@ const planets = [
       distance: 50,
       speed: 0.006,
       ring: {
+        color: 0xaaaaaa, // light gray
         innerRadius: 2.6,
         outerRadius: 2.8,
         tilt: Math.PI / 2 - 0.054, // ~3.1°
+        opacity: 0.2,
       },
       moons: [
         {
@@ -94,9 +96,11 @@ const planets = [
       distance: 65,
       speed: 0.005,
       ring: {
+        color: 0xb1976b,
         innerRadius: 2.2,
         outerRadius: 3.5,
         tilt: Math.PI / 2 - 0.466, // ~26.7°
+        opacity: 0.6,
       },
       moons: [
         {
@@ -119,9 +123,11 @@ const planets = [
       distance: 80,
       speed: 0.003,
       ring: {
+        color: 0xb5e0ff, // icy blue
         innerRadius: 1.6,
         outerRadius: 1.8,
         tilt: -Math.PI / 2, // ~97.8°, basically sideways
+        opacity: 0.15,
       },
       moons: [
         {
@@ -144,9 +150,11 @@ const planets = [
       distance: 95,
       speed: 0.002,
       ring: {
+        color: 0x8888ff, // soft bluish-purple
         innerRadius: 1.5,
         outerRadius: 1.7,
         tilt: Math.PI / 2 - 0.494, // ~28.3°
+        opacity: 0.1,
       },
       moons: [
         {

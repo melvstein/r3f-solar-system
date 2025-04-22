@@ -1,9 +1,11 @@
 import { Texture } from "three";
 
 export type TRing = {
+    color: number | string;
     innerRadius: number;
     outerRadius: number;
     tilt: number;
+    opacity: number;
 }
 
 export type TMoon = {

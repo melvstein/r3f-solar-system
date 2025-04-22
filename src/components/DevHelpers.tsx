@@ -7,9 +7,9 @@ export default function DevHelpers() {
   const value = 1000;
 
   const { showAxes, showGrid, axesSize, gridSize, gridDivisions } = useControls('Dev Helpers', {
-    showAxes: true,
+    showAxes: false,
     axesSize: { value: value, min: 1, max: 1000, step: 1 },
-    showGrid: true,
+    showGrid: false,
     gridSize: { value: value, min: 1, max: 1000, step: 1 },
     gridDivisions: { value: value, min: 1, max: 1000, step: 1 },
   });
