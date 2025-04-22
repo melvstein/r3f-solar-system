@@ -6,12 +6,13 @@ import * as THREE from 'three';
 export default function DevHelpers() {
   const value = 1000;
 
-  const { showAxes, showGrid, axesSize, gridSize, gridDivisions } = useControls('Dev Helpers', {
+  const { showAxes, showGrid, axesSize, gridSize, gridDivisions, ambientLightIntensity } = useControls('Dev Helpers', {
     showAxes: false,
     axesSize: { value: value, min: 1, max: 1000, step: 1 },
     showGrid: false,
     gridSize: { value: value, min: 1, max: 1000, step: 1 },
     gridDivisions: { value: value, min: 1, max: 1000, step: 1 },
+    ambientLightIntensity: { value: 0.2, min: 0, max: 1, step: 0.1 }
   });
 
   const axesHelper = useMemo(() => {
@@ -26,10 +27,15 @@ export default function DevHelpers() {
     ) : null;
   }, [showGrid, gridSize, gridDivisions]);
 
+  const ambientLightHelper = useMemo(() => {
+    return <ambientLight intensity={ambientLightIntensity} />
+  }, [ambientLightIntensity]);
+
   return (
     <>
       {axesHelper}
       {gridHelper}
+      {ambientLightHelper}
       <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
         <GizmoViewport axisColors={['red', 'green', 'blue']} labelColor="white" />
       </GizmoHelper>
