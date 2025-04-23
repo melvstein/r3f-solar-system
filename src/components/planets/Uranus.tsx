@@ -21,6 +21,13 @@ const Uranus = forwardRef<Mesh, {}>((_, ref) => {
         tilt: -Math.PI / 2, // ~97.8°, basically sideways
         opacity: 0.15,
       },
+      atmosphere: {
+        radius: 1.7,
+        color: "#b2ebf2",
+        opacity: 0.2,
+        emissive: "#81d4fa",
+        emissiveIntensity: 0.5,
+      },
       moons: [
         {
           name: "Miranda",

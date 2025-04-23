@@ -52,8 +52,8 @@ function App() {
 		<div className="canvas-container">
 			<Canvas>
 				{/* <CameraCoordinateHelper /> */}
+				<OrbitControls />
 				<DevHelpers />
-				<OrbitControls  />
 				<PerspectiveCamera ref={cameraRef} position={[0, 120, 120]} fov={75} makeDefault />
 				<ambientLight intensity={0.1} />
 				<pointLight position={[0, 0, 0]} intensity={2000} color={0xffffff} />

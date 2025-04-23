@@ -13,6 +13,13 @@ const planets = [
       distance: 18,
       speed: 0.012,
       ring: null,
+      atmosphere: {
+        radius: 1.05,
+        color: "#f5deb3",
+        opacity: 0.3,
+        emissive: "orange",
+        emissiveIntensity: 0.8,
+      },
       moons: [],
     },
     {
@@ -21,6 +28,13 @@ const planets = [
       distance: 26,
       speed: 0.01,
       ring: null,
+      atmosphere: {
+        radius: 1.2,
+        color: "#00bcd4",
+        opacity: 0.2,
+        emissive: "blue",
+        emissiveIntensity: 1,
+      },
       moons: [
         {
           name: "Moon",
@@ -36,6 +50,13 @@ const planets = [
       distance: 34,
       speed: 0.008,
       ring: null,
+      atmosphere: {
+        radius: 0.95,
+        color: "#ff6f00",
+        opacity: 0.15,
+        emissive: "darkred",
+        emissiveIntensity: 0.6,
+      },
       moons: [
         {
           name: "Phobos",
@@ -62,6 +83,13 @@ const planets = [
         outerRadius: 2.8,
         tilt: Math.PI / 2 - 0.054, // ~3.1°
         opacity: 0.2,
+      },
+      atmosphere: {
+        radius: 2.8,
+        color: "#d2b48c",
+        opacity: 0.25,
+        emissive: "#ffcc80",
+        emissiveIntensity: 0.5,
       },
       moons: [
         {
@@ -102,6 +130,13 @@ const planets = [
         tilt: Math.PI / 2 - 0.466, // ~26.7°
         opacity: 0.6,
       },
+      atmosphere: {
+        radius: 2.3,
+        color: "#ffe0b2",
+        opacity: 0.25,
+        emissive: "#ffd180",
+        emissiveIntensity: 0.5,
+      },
       moons: [
         {
           name: "Titan",
@@ -129,6 +164,13 @@ const planets = [
         tilt: -Math.PI / 2, // ~97.8°, basically sideways
         opacity: 0.15,
       },
+      atmosphere: {
+        radius: 1.7,
+        color: "#b2ebf2",
+        opacity: 0.2,
+        emissive: "#81d4fa",
+        emissiveIntensity: 0.5,
+      },
       moons: [
         {
           name: "Miranda",
@@ -155,6 +197,13 @@ const planets = [
         outerRadius: 1.7,
         tilt: Math.PI / 2 - 0.494, // ~28.3°
         opacity: 0.1,
+      },
+      atmosphere: {
+        radius: 1.6,
+        color: "#a0c4ff",
+        opacity: 0.25,
+        emissive: "#90caf9",
+        emissiveIntensity: 0.5,
       },
       moons: [
         {

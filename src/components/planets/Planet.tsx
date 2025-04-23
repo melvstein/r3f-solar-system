@@ -4,15 +4,7 @@ import { DoubleSide, Mesh } from "three";
 import { TAtmosphere, TMoon, TPlanet, TRing } from "../../utils/types";
 import { adjustSpeed } from "../../utils/configs";
 import * as THREE from "three"
-import { useControls } from "leva";
-
-const useOrbitControls = () => {
-    const { orbitEnabled } = useControls({
-        orbitEnabled: { value: true, label: "Enable Orbit" }
-    });
-
-    return orbitEnabled;
-};
+import { useOrbitControls } from "../../helpers/DevHelpers";
 
 type PlanetProps = {
 	planet: TPlanet;

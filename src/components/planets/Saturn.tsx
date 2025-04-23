@@ -21,6 +21,13 @@ const Saturn = forwardRef<Mesh, {}>((_, ref) => {
         tilt: Math.PI / 2 - 0.466, // ~26.7°
         opacity: 0.6,
       },
+      atmosphere: {
+        radius: 2.3,
+        color: "#ffe0b2",
+        opacity: 0.25,
+        emissive: "#ffd180",
+        emissiveIntensity: 0.5,
+      },
       moons: [
         {
           name: "Titan",

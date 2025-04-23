@@ -3,42 +3,101 @@ import { useMemo } from 'react';
 import { GizmoHelper, GizmoViewport } from '@react-three/drei';
 import * as THREE from 'three';
 
+const value = 1000;
+
+export const useOrbitControls = () => {
+    const { orbitEnabled } = useControls({
+        orbitEnabled: {
+            value: true,
+            label: "Enable Orbit"
+        }
+    });
+
+    return orbitEnabled;
+};
+
+export const AxesControls = () => {
+    const { showAxes, axesSize } = useControls({
+        showAxes: {
+            value: false,
+            label: "Show Axes",
+        },
+        axesSize: {
+            value: value,
+            min: 1,
+            max: 1000,
+            step: 1,
+            label: "Axes Size",
+        }
+    });
+
+    return useMemo(() => {
+        return showAxes ? (
+          <primitive object={new THREE.AxesHelper(axesSize)} position={[0, 0.01, 0]} />
+        ) : null;
+    }, [showAxes, axesSize]);
+};
+
+export const GridControls = () => {
+    const { showGrid, gridSize, gridDivisions } = useControls({
+        showGrid: {
+            value: false,
+            label: "Show Grid",
+        },
+        gridSize: {
+            value: value,
+            min: 1,
+            max: 1000,
+            step: 1,
+            label: "Grid size",
+        },
+        gridDivisions: {
+            value: 100,
+            min: 1,
+            max: 1000,
+            step: 1,
+            label: "Grid Divisions",
+        }
+    });
+
+    return useMemo(() => {
+        return showGrid ? (
+          <primitive object={new THREE.GridHelper(gridSize, gridDivisions)} position={[0, 0, 0]} />
+        ) : null;
+    }, [showGrid, gridSize, gridDivisions]);
+}
+
+export const GizmoControls = () => {
+    return (
+        <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
+            <GizmoViewport axisColors={['red', 'green', 'blue']} labelColor="white" />
+        </GizmoHelper>
+    );
+}
+
+export const AmbientLightControls = () => {
+    const { ambientLightIntensity } = useControls({
+        ambientLightIntensity: {
+            value: 0.2,
+            min: 0.0,
+            max: 1,
+            step: 0.1,
+            label: "Ambient Light Intensity",
+        }
+    });
+    
+    return useMemo(() => {
+        return <ambientLight intensity={ambientLightIntensity} />
+    }, [ambientLightIntensity]);
+}
+
 export default function DevHelpers() {
-  const value = 1000;
-
-  const { showAxes, showGrid, axesSize, gridSize, gridDivisions, ambientLightIntensity } = useControls('Dev Helpers', {
-    showAxes: false,
-    axesSize: { value: value, min: 1, max: 1000, step: 1 },
-    showGrid: false,
-    gridSize: { value: value, min: 1, max: 1000, step: 1 },
-    gridDivisions: { value: value, min: 1, max: 1000, step: 1 },
-    ambientLightIntensity: { value: 0.2, min: 0, max: 1, step: 0.1 }
-  });
-
-  const axesHelper = useMemo(() => {
-    return showAxes ? (
-      <primitive object={new THREE.AxesHelper(axesSize)} position={[0, 0.01, 0]} />
-    ) : null;
-  }, [showAxes, axesSize]);
-
-  const gridHelper = useMemo(() => {
-    return showGrid ? (
-      <primitive object={new THREE.GridHelper(gridSize, gridDivisions)} position={[0, 0, 0]} />
-    ) : null;
-  }, [showGrid, gridSize, gridDivisions]);
-
-  const ambientLightHelper = useMemo(() => {
-    return <ambientLight intensity={ambientLightIntensity} />
-  }, [ambientLightIntensity]);
-
   return (
     <>
-      {axesHelper}
-      {gridHelper}
-      {ambientLightHelper}
-      <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
-        <GizmoViewport axisColors={['red', 'green', 'blue']} labelColor="white" />
-      </GizmoHelper>
+        <AxesControls />
+        <GridControls />
+        <GizmoControls />
+        <AmbientLightControls />
     </>
   );
 }

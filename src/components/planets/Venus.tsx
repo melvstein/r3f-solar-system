@@ -14,6 +14,13 @@ const Venus = forwardRef<Mesh, {}>((_, ref) => {
         distance: 18,
         speed: 0.012,
         ring: null,
+        atmosphere: {
+          radius: 1.05,
+          color: "#f5deb3",
+          opacity: 0.3,
+          emissive: "orange",
+          emissiveIntensity: 0.8,
+        },
         moons: [],
         texture: venusTexture,
       };

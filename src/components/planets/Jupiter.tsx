@@ -21,6 +21,13 @@ const Jupiter = forwardRef<Mesh, {}>((_, ref) => {
         tilt: Math.PI / 2 - 0.054, // ~3.1°
         opacity: 0.2,
       },
+      atmosphere: {
+        radius: 2.8,
+        color: "#d2b48c",
+        opacity: 0.25,
+        emissive: "#ffcc80",
+        emissiveIntensity: 0.5,
+      },
       moons: [
         {
           name: "Io",
