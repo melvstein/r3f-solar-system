@@ -21,9 +21,9 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
 
     useFrame(() => {
         if (meshRef.current) {
-           /*  meshRef.current.rotation.y += planet.speed * adjustSpeed;
+            meshRef.current.rotation.y += planet.speed * adjustSpeed;
             meshRef.current.position.x = Math.sin(meshRef.current.rotation.y) * planet.distance;
-            meshRef.current.position.z = Math.cos(meshRef.current.rotation.y) * planet.distance; */
+            meshRef.current.position.z = Math.cos(meshRef.current.rotation.y) * planet.distance;
         }
     });
 
