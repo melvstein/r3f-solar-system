@@ -1,8 +1,9 @@
 import { useFrame } from "@react-three/fiber";
 import { forwardRef, RefObject, useEffect, useRef } from "react";
 import { DoubleSide, Mesh } from "three";
-import { TMoon, TPlanet, TRing } from "../../utils/types";
+import { TAtmosphere, TMoon, TPlanet, TRing } from "../../utils/types";
 import { adjustSpeed } from "../../utils/configs";
+import * as THREE from "three"
 
 type PlanetProps = {
 	planet: TPlanet;
@@ -20,9 +21,9 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
 
     useFrame(() => {
         if (meshRef.current) {
-            meshRef.current.rotation.y += planet.speed * adjustSpeed;
+           /*  meshRef.current.rotation.y += planet.speed * adjustSpeed;
             meshRef.current.position.x = Math.sin(meshRef.current.rotation.y) * planet.distance;
-            meshRef.current.position.z = Math.cos(meshRef.current.rotation.y) * planet.distance;
+            meshRef.current.position.z = Math.cos(meshRef.current.rotation.y) * planet.distance; */
         }
     });
 
@@ -40,6 +41,7 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
             </mesh>
             { planet.ring && <Ring ring={planet.ring} /> }
             { moons }
+            { planet.atmosphere && <Atmosphere atmosphere={planet.atmosphere} /> }
         </group>
     );
 });
@@ -88,5 +90,23 @@ const Ring = ({ ring }: { ring: TRing }) => {
 		</mesh>
 	);
 };
+
+const Atmosphere = (({ atmosphere }: { atmosphere : TAtmosphere}) => {
+
+    return (
+        <mesh>
+            <sphereGeometry args={[atmosphere.radius, 32, 32]} />
+            <meshStandardMaterial
+                color={atmosphere.color} // The color of the atmosphere
+                transparent={true} // Makes it semi-transparent
+                opacity={atmosphere.opacity} // Controls opacity, can be adjusted
+                blending={THREE.AdditiveBlending} // Adds to background, creating glow effect
+                emissive={atmosphere.emissive} // Makes the atmosphere emit light for the glow effect
+                emissiveIntensity={atmosphere.emissiveIntensity} // Controls the intensity of the emitted light
+                depthWrite={false} // Prevents writing to depth buffer, helps with rendering order
+            />
+        </mesh>
+    );
+});
 
 export default Planet;
