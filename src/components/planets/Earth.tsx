@@ -14,7 +14,6 @@ const Earth = forwardRef<Mesh, {}>((_, ref) => {
 		radius: 1,
 		distance: 26,
 		speed: 0.01,
-		ring: null,
 		atmosphere: {
 			radius: 1.2,
 			color: "#00bcd4",
@@ -22,6 +21,7 @@ const Earth = forwardRef<Mesh, {}>((_, ref) => {
 			emissive: "blue",
 			emissiveIntensity: 1,
 		},
+		ring: null,
 		moons: [
 			{
 				name: "Moon",

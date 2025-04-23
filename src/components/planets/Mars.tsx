@@ -14,7 +14,6 @@ const Mars = forwardRef<Mesh, {}>((_, ref) => {
         radius: 0.8,
         distance: 34,
         speed: 0.008,
-        ring: null,
         atmosphere: {
           radius: 0.95,
           color: "#ff6f00",
@@ -22,6 +21,7 @@ const Mars = forwardRef<Mesh, {}>((_, ref) => {
           emissive: "darkred",
           emissiveIntensity: 0.6,
         },
+        ring: null,
         moons: [
           {
             name: "Phobos",

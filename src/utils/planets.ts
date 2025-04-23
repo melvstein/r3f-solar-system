@@ -4,6 +4,7 @@ const planets = [
       radius: 0.5,
       distance: 10,
       speed: 0.017,
+      atmosphere: null,
       ring: null,
       moons: [],
     },
@@ -12,7 +13,6 @@ const planets = [
       radius: 0.9,
       distance: 18,
       speed: 0.012,
-      ring: null,
       atmosphere: {
         radius: 1.05,
         color: "#f5deb3",
@@ -20,6 +20,7 @@ const planets = [
         emissive: "orange",
         emissiveIntensity: 0.8,
       },
+      ring: null,
       moons: [],
     },
     {
@@ -27,7 +28,6 @@ const planets = [
       radius: 1,
       distance: 26,
       speed: 0.01,
-      ring: null,
       atmosphere: {
         radius: 1.2,
         color: "#00bcd4",
@@ -35,6 +35,7 @@ const planets = [
         emissive: "blue",
         emissiveIntensity: 1,
       },
+      ring: null,
       moons: [
         {
           name: "Moon",
@@ -49,7 +50,6 @@ const planets = [
       radius: 0.8,
       distance: 34,
       speed: 0.008,
-      ring: null,
       atmosphere: {
         radius: 0.95,
         color: "#ff6f00",
@@ -57,6 +57,7 @@ const planets = [
         emissive: "darkred",
         emissiveIntensity: 0.6,
       },
+      ring: null,
       moons: [
         {
           name: "Phobos",
@@ -77,19 +78,19 @@ const planets = [
       radius: 2.5,
       distance: 50,
       speed: 0.006,
-      ring: {
-        color: 0xaaaaaa, // light gray
-        innerRadius: 2.6,
-        outerRadius: 2.8,
-        tilt: Math.PI / 2 - 0.054, // ~3.1°
-        opacity: 0.2,
-      },
       atmosphere: {
         radius: 2.8,
         color: "#d2b48c",
         opacity: 0.25,
         emissive: "#ffcc80",
         emissiveIntensity: 0.5,
+      },
+      ring: {
+        color: 0xaaaaaa, // light gray
+        innerRadius: 2.7,
+        outerRadius: 3.2,
+        tilt: Math.PI / 2 - 0.054, // ~3.1°
+        opacity: 0.2,
       },
       moons: [
         {
@@ -123,19 +124,19 @@ const planets = [
       radius: 2,
       distance: 65,
       speed: 0.005,
-      ring: {
-        color: 0xb1976b,
-        innerRadius: 2.2,
-        outerRadius: 3.5,
-        tilt: Math.PI / 2 - 0.466, // ~26.7°
-        opacity: 0.6,
-      },
       atmosphere: {
         radius: 2.3,
         color: "#ffe0b2",
         opacity: 0.25,
         emissive: "#ffd180",
         emissiveIntensity: 0.5,
+      },
+      ring: {
+        color: 0xb1976b,
+        innerRadius: 2.2,
+        outerRadius: 3.5,
+        tilt: Math.PI / 2 - 0.466, // ~26.7°
+        opacity: 0.6,
       },
       moons: [
         {
@@ -157,19 +158,19 @@ const planets = [
       radius: 1.5,
       distance: 80,
       speed: 0.003,
-      ring: {
-        color: 0xb5e0ff, // icy blue
-        innerRadius: 1.6,
-        outerRadius: 1.8,
-        tilt: -Math.PI / 2, // ~97.8°, basically sideways
-        opacity: 0.15,
-      },
       atmosphere: {
         radius: 1.7,
         color: "#b2ebf2",
         opacity: 0.2,
         emissive: "#81d4fa",
         emissiveIntensity: 0.5,
+      },
+      ring: {
+        color: 0xb5e0ff, // icy blue
+        innerRadius: 1.6,
+        outerRadius: 1.8,
+        tilt: -Math.PI / 2, // ~97.8°, basically sideways
+        opacity: 0.15,
       },
       moons: [
         {
@@ -191,19 +192,19 @@ const planets = [
       radius: 1.4,
       distance: 95,
       speed: 0.002,
-      ring: {
-        color: 0x8888ff, // soft bluish-purple
-        innerRadius: 1.5,
-        outerRadius: 1.7,
-        tilt: Math.PI / 2 - 0.494, // ~28.3°
-        opacity: 0.1,
-      },
       atmosphere: {
         radius: 1.6,
         color: "#a0c4ff",
         opacity: 0.25,
         emissive: "#90caf9",
         emissiveIntensity: 0.5,
+      },
+      ring: {
+        color: 0x8888ff, // soft bluish-purple
+        innerRadius: 1.5,
+        outerRadius: 1.7,
+        tilt: Math.PI / 2 - 0.494, // ~28.3°
+        opacity: 0.1,
       },
       moons: [
         {

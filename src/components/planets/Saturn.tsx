@@ -14,19 +14,19 @@ const Saturn = forwardRef<Mesh, {}>((_, ref) => {
       radius: 2,
       distance: 65,
       speed: 0.005,
-      ring: {
-        color: 0xb1976b,
-        innerRadius: 2.2,
-        outerRadius: 3.5,
-        tilt: Math.PI / 2 - 0.466, // ~26.7°
-        opacity: 0.6,
-      },
       atmosphere: {
         radius: 2.3,
         color: "#ffe0b2",
         opacity: 0.25,
         emissive: "#ffd180",
         emissiveIntensity: 0.5,
+      },
+      ring: {
+        color: 0xb1976b,
+        innerRadius: 2.4,
+        outerRadius: 3.5,
+        tilt: Math.PI / 2 - 0.466, // ~26.7°
+        opacity: 0.6,
       },
       moons: [
         {

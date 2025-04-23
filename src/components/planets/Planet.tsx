@@ -1,10 +1,11 @@
 import { useFrame } from "@react-three/fiber";
-import { forwardRef, RefObject, useEffect, useRef } from "react";
+import { forwardRef, RefObject, useEffect, useRef, useState } from "react";
 import { DoubleSide, Mesh } from "three";
 import { TAtmosphere, TMoon, TPlanet, TRing } from "../../utils/types";
 import { adjustSpeed } from "../../utils/configs";
 import * as THREE from "three"
 import { useOrbitControls } from "../../helpers/DevHelpers";
+import { Html } from '@react-three/drei';
 
 type PlanetProps = {
 	planet: TPlanet;
@@ -13,6 +14,7 @@ type PlanetProps = {
 const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
     const meshRef = ref as RefObject<Mesh>;
     const orbitEnabled = useOrbitControls();
+    const [hoveredPlanet, setHoveredPlanet] = useState<string | null>(null);
 
     useEffect(() => {
         if (meshRef.current) {
@@ -39,13 +41,32 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
 
     return (
         <group ref={meshRef}>
-            <mesh>
+            <mesh onPointerOver={() => setHoveredPlanet(planet.name)} onPointerOut={() => setHoveredPlanet(null)}>
                 <sphereGeometry args={[planet.radius, 32, 32]} />
                 <meshStandardMaterial map={planet.texture} />
             </mesh>
             { planet.ring && <Ring ring={planet.ring} /> }
             { moons }
             { planet.atmosphere && <Atmosphere atmosphere={planet.atmosphere} /> }
+
+            {hoveredPlanet === planet.name && (
+                <Html
+                    position={[0, planet.radius + 0.5, 0]} // float label above the planet
+                    style={{
+                    background: 'rgba(0,0,0,0.6)',
+                    color: 'white',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    fontSize: '150px',
+                    }}
+                    className="bg-black/5 text-white p-4 round-lg text-lg"
+                    center
+                    distanceFactor={10}
+                    occlude
+                >
+                    {planet.name}
+                </Html>
+            )}
         </group>
     );
 });
@@ -99,9 +120,9 @@ const Atmosphere = (({ atmosphere }: { atmosphere : TAtmosphere}) => {
         <mesh>
             <sphereGeometry args={[atmosphere.radius, 32, 32]} />
             <meshStandardMaterial
-                color={atmosphere.color} // The color of the atmosphere
-                transparent={true} // Makes it semi-transparent
-                opacity={atmosphere.opacity} // Controls opacity, can be adjusted
+                color={atmosphere.color}
+                transparent={true}
+                opacity={atmosphere.opacity}
                 blending={THREE.AdditiveBlending} // Adds to background, creating glow effect
                 emissive={atmosphere.emissive} // Makes the atmosphere emit light for the glow effect
                 emissiveIntensity={atmosphere.emissiveIntensity} // Controls the intensity of the emitted light

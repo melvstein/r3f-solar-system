@@ -14,19 +14,19 @@ const Neptune = forwardRef<Mesh, {}>((_, ref) => {
       radius: 1.4,
       distance: 95,
       speed: 0.002,
-      ring: {
-        color: 0x8888ff, // soft bluish-purple
-        innerRadius: 1.5,
-        outerRadius: 1.7,
-        tilt: Math.PI / 2 - 0.494, // ~28.3°
-        opacity: 0.1,
-      },
       atmosphere: {
         radius: 1.6,
         color: "#a0c4ff",
         opacity: 0.25,
         emissive: "#90caf9",
         emissiveIntensity: 0.5,
+      },
+      ring: {
+        color: 0x8888ff, // soft bluish-purple
+        innerRadius: 1.8,
+        outerRadius: 2,
+        tilt: Math.PI / 2 - 0.494, // ~28.3°
+        opacity: 0.1,
       },
       moons: [
         {

@@ -58,6 +58,7 @@ function App() {
 				<ambientLight intensity={0.1} />
 				<pointLight position={[0, 0, 0]} intensity={2000} color={0xffffff} />
 				<GalaxyBackground />
+
 				<Init />
 			</Canvas>
 		</div>

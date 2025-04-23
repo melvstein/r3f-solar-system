@@ -14,19 +14,19 @@ const Uranus = forwardRef<Mesh, {}>((_, ref) => {
       radius: 1.5,
       distance: 80,
       speed: 0.003,
-      ring: {
-        color: 0xb5e0ff, // icy blue
-        innerRadius: 1.6,
-        outerRadius: 1.8,
-        tilt: -Math.PI / 2, // ~97.8°, basically sideways
-        opacity: 0.15,
-      },
       atmosphere: {
         radius: 1.7,
         color: "#b2ebf2",
         opacity: 0.2,
         emissive: "#81d4fa",
         emissiveIntensity: 0.5,
+      },
+      ring: {
+        color: 0xb5e0ff, // icy blue
+        innerRadius: 1.8,
+        outerRadius: 2,
+        tilt: -Math.PI / 2, // ~97.8°, basically sideways
+        opacity: 0.15,
       },
       moons: [
         {

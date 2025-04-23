@@ -14,13 +14,6 @@ const Jupiter = forwardRef<Mesh, {}>((_, ref) => {
       radius: 2.5,
       distance: 50,
       speed: 0.006,
-      ring: {
-        color: 0xaaaaaa, // light gray
-        innerRadius: 2.6,
-        outerRadius: 2.8,
-        tilt: Math.PI / 2 - 0.054, // ~3.1°
-        opacity: 0.2,
-      },
       atmosphere: {
         radius: 2.8,
         color: "#d2b48c",
@@ -28,11 +21,18 @@ const Jupiter = forwardRef<Mesh, {}>((_, ref) => {
         emissive: "#ffcc80",
         emissiveIntensity: 0.5,
       },
+      ring: {
+        color: 0xaaaaaa, // light gray
+        innerRadius: 3,
+        outerRadius: 3.2,
+        tilt: Math.PI / 2 - 0.054, // ~3.1°
+        opacity: 0.2,
+      },
       moons: [
         {
           name: "Io",
           radius: 0.2,
-          distance: 2.5,
+          distance: 2.9,
           speed: 0.04,
           texture: moonTexture,
         },

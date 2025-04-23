@@ -13,6 +13,7 @@ const Mercury = forwardRef<Mesh, {}>((_, ref) => {
         radius: 0.5,
         distance: 10,
         speed: 0.017,
+        atmosphere: null,
         ring: null,
         moons: [],
         texture: mercuryTexture,

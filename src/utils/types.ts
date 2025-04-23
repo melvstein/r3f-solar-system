@@ -29,8 +29,8 @@ export type TPlanet = {
     radius: number;
     distance: number;
     speed: number;
+    atmosphere?: TAtmosphere | null;
     ring?: TRing | null;
-    atmosphere?: TAtmosphere;
     moons?: TMoon[];
     texture: Texture
 }
