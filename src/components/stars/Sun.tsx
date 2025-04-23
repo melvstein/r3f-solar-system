@@ -21,7 +21,6 @@ const Sun = forwardRef<Mesh, {}>((_, ref) => {
         meshRef.current?.rotateY(star.rotationSpeed * adjustSpeed);
     });
 
-console.log(hover);
     return (
         <group ref={ref}>
             <mesh onPointerOver={() => { setHover(true) }} onPointerOut={ () => { setHover(false) } }>

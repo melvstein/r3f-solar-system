@@ -2,7 +2,7 @@ import { Html } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useState } from 'react'
 
-const CameraCoordinateHelper = () => {
+const CameraCoordinatesHelper = () => {
     const { camera } = useThree();
     const [position, setPosition] = useState<{ x: number | string; y: number | string, z: number | string }>({ x: 0, y: 0, z: 0 });
 
@@ -38,4 +38,4 @@ const CameraCoordinateHelper = () => {
     )
 }
 
-export default CameraCoordinateHelper
+export default CameraCoordinatesHelper;

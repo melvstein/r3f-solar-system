@@ -2,6 +2,7 @@ import { useControls } from 'leva';
 import { useMemo } from 'react';
 import { GizmoHelper, GizmoViewport } from '@react-three/drei';
 import * as THREE from 'three';
+import CameraCoordinatesHelper from './CameraCoordinatesHelper';
 
 const value = 1000;
 
@@ -91,6 +92,21 @@ export const AmbientLightControls = () => {
     }, [ambientLightIntensity]);
 }
 
+export const CameraCoordinatesControls = () => {
+    const { cameraCoordinatesEnabled } = useControls(
+        {
+            cameraCoordinatesEnabled: {
+                value: false,
+                label: "Enable Camera Coordinates",
+            }
+        }
+    );
+
+    return useMemo(() => {
+        return cameraCoordinatesEnabled && <CameraCoordinatesHelper />;
+    }, [cameraCoordinatesEnabled]);
+};
+
 export default function DevHelpers() {
   return (
     <>
@@ -98,6 +114,7 @@ export default function DevHelpers() {
         <GridControls />
         <GizmoControls />
         <AmbientLightControls />
+        <CameraCoordinatesControls />
     </>
   );
 }
