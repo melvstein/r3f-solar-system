@@ -16,8 +16,8 @@ const Sun = forwardRef<Mesh, {}>((_, ref) => {
         texture: sunTexture,
     };
 
-    useFrame((state, delta) => {
-        meshRef.current.rotateY(sun.rotationSpeed * adjustSpeed);
+    useFrame(() => {
+        meshRef.current?.rotateY(sun.rotationSpeed * adjustSpeed);
     });
 
     return (

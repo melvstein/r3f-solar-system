@@ -14,7 +14,6 @@ import Saturn from './components/planets/Saturn';
 import Uranus from './components/planets/Uranus';
 import Neptune from './components/planets/Neptune';
 import GalaxyBackground from './components/GalaxyBackground';
-import CameraCoordinateHelper from './helpers/CameraCoordinateHelper';
 
 const Init = () => {
 	const sunRef = useRef<Mesh>(null);

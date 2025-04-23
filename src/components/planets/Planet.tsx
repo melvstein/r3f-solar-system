@@ -18,10 +18,12 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
         }
     }, [meshRef]);
 
-    useFrame((state, delta) => {
-        meshRef.current.rotation.y += planet.speed * adjustSpeed;
-        meshRef.current.position.x = Math.sin(meshRef.current.rotation.y) * planet.distance;
-        meshRef.current.position.z = Math.cos(meshRef.current.rotation.y) * planet.distance;
+    useFrame(() => {
+        if (meshRef.current) {
+            meshRef.current.rotation.y += planet.speed * adjustSpeed;
+            meshRef.current.position.x = Math.sin(meshRef.current.rotation.y) * planet.distance;
+            meshRef.current.position.z = Math.cos(meshRef.current.rotation.y) * planet.distance;
+        }
     });
 
     const moons = planet.moons?.map((moon, index) => {
@@ -47,7 +49,7 @@ Planet.displayName = "Planet";
 const Moon = ({ moon }: { moon: TMoon }) => {
 	const moonRef = useRef<Mesh>(null);
 
-	useFrame((state, delta) => {
+	useFrame(() => {
 		if (moonRef.current) {
 			moonRef.current.rotation.y += moon.speed * adjustSpeed;
 			moonRef.current.position.x = Math.sin(moonRef.current.rotation.y) * moon.distance;
