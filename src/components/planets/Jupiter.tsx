@@ -59,4 +59,6 @@ const Jupiter = forwardRef<Mesh, {}>((_, ref) => {
     );
 });
 
+Jupiter.displayName = "Jupiter";
+
 export default Jupiter;

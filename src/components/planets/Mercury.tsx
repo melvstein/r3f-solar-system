@@ -23,4 +23,6 @@ const Mercury = forwardRef<Mesh, {}>((_, ref) => {
     );
 });
 
+Mercury.displayName = "Mercury";
+
 export default Mercury;

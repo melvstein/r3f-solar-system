@@ -23,4 +23,6 @@ const Venus = forwardRef<Mesh, {}>((_, ref) => {
     );
 });
 
+Venus.displayName = "Venus";
+
 export default Venus;

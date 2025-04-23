@@ -38,4 +38,6 @@ const Neptune = forwardRef<Mesh, {}>((_, ref) => {
     );
 });
 
+Neptune.displayName = "Neptune";
+
 export default Neptune;

@@ -39,4 +39,6 @@ const Mars = forwardRef<Mesh, {}>((_, ref) => {
     );
 });
 
+Mars.displayName = "Mars";
+
 export default Mars;

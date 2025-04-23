@@ -45,4 +45,6 @@ const Saturn = forwardRef<Mesh, {}>((_, ref) => {
     );
 });
 
+Saturn.displayName = "Saturn";
+
 export default Saturn;

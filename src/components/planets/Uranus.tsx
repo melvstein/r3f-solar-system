@@ -45,4 +45,6 @@ const Uranus = forwardRef<Mesh, {}>((_, ref) => {
     );
 });
 
+Uranus.displayName = "Uranus";
+
 export default Uranus;

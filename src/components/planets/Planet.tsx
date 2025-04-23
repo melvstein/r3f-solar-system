@@ -4,6 +4,15 @@ import { DoubleSide, Mesh } from "three";
 import { TAtmosphere, TMoon, TPlanet, TRing } from "../../utils/types";
 import { adjustSpeed } from "../../utils/configs";
 import * as THREE from "three"
+import { useControls } from "leva";
+
+const useOrbitControls = () => {
+    const { orbitEnabled } = useControls({
+        orbitEnabled: { value: true, label: "Enable Orbit" }
+    });
+
+    return orbitEnabled;
+};
 
 type PlanetProps = {
 	planet: TPlanet;
@@ -11,16 +20,19 @@ type PlanetProps = {
 
 const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
     const meshRef = ref as RefObject<Mesh>;
+    const orbitEnabled = useOrbitControls();
 
     useEffect(() => {
         if (meshRef.current) {
             meshRef.current.name = planet.name;
             meshRef.current.position.x = planet.distance;
+            meshRef.current.userData.planetProperties = planet;
         }
-    }, [meshRef]);
+    }, [meshRef, planet]);
 
     useFrame(() => {
         if (meshRef.current) {
+            if (!orbitEnabled) return;
             meshRef.current.rotation.y += planet.speed * adjustSpeed;
             meshRef.current.position.x = Math.sin(meshRef.current.rotation.y) * planet.distance;
             meshRef.current.position.z = Math.cos(meshRef.current.rotation.y) * planet.distance;
@@ -45,8 +57,6 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
         </group>
     );
 });
-
-Planet.displayName = "Planet";
 
 const Moon = ({ moon }: { moon: TMoon }) => {
 	const moonRef = useRef<Mesh>(null);
@@ -108,5 +118,7 @@ const Atmosphere = (({ atmosphere }: { atmosphere : TAtmosphere}) => {
         </mesh>
     );
 });
+
+Planet.displayName = "Planet";
 
 export default Planet;
