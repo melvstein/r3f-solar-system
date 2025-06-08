@@ -13,7 +13,6 @@ export type TMoon = {
     radius: number;
     distance: number;
     speed: number;
-    texture: Texture;
 }
 
 export type TAtmosphere = {
@@ -32,7 +31,6 @@ export type TPlanet = {
     atmosphere?: TAtmosphere | null;
     ring?: TRing | null;
     moons?: TMoon[];
-    texture: Texture
 }
 
 export type TStar = {

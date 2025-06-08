@@ -1,17 +1,18 @@
 import { useFrame } from "@react-three/fiber";
 import { forwardRef, RefObject, useEffect, useRef, useState } from "react";
-import { DoubleSide, Mesh } from "three";
+import { DoubleSide, Mesh, Texture } from "three";
 import { TAtmosphere, TMoon, TPlanet, TRing } from "../../utils/types";
 import { adjustSpeed } from "../../utils/configs";
-import * as THREE from "three"
 import { useOrbitControls } from "../../helpers/DevHelpers";
-import { Html } from '@react-three/drei';
+import { Html, useTexture } from '@react-three/drei';
+import * as THREE from "three";
 
 type PlanetProps = {
 	planet: TPlanet;
+    texture: Texture;
 };
 
-const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
+const Planet = forwardRef<Mesh, PlanetProps>(({ planet, texture }, ref) => {
     const meshRef = ref as RefObject<Mesh>;
     const orbitEnabled = useOrbitControls();
     const [hoveredPlanet, setHoveredPlanet] = useState<string | null>(null);
@@ -43,7 +44,7 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
         <group ref={meshRef}>
             <mesh onPointerOver={() => setHoveredPlanet(planet.name)} onPointerOut={() => setHoveredPlanet(null)}>
                 <sphereGeometry args={[planet.radius, 32, 32]} />
-                <meshStandardMaterial map={planet.texture} />
+                <meshStandardMaterial map={texture} />
             </mesh>
             { planet.ring && <Ring ring={planet.ring} /> }
             { moons }
@@ -73,6 +74,7 @@ const Planet = forwardRef<Mesh, PlanetProps>(({ planet }, ref) => {
 
 const Moon = ({ moon }: { moon: TMoon }) => {
 	const moonRef = useRef<Mesh>(null);
+    const texture: Texture = useTexture("/assets/textures/2k_moon.jpg");
 
 	useFrame(() => {
 		if (moonRef.current) {
@@ -85,7 +87,7 @@ const Moon = ({ moon }: { moon: TMoon }) => {
 	return (
 		<mesh ref={moonRef}>
 			<sphereGeometry args={[moon.radius, 32, 32]} />
-			<meshStandardMaterial map={moon.texture} />
+			<meshStandardMaterial map={texture} />
 		</mesh>
 	);
 };
