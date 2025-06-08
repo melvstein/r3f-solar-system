@@ -16,7 +16,7 @@ import Neptune from './components/planets/Neptune';
 import GalaxyBackground from './components/GalaxyBackground';
 import axios from 'axios';
 import { API_URL } from './utils/constants';
-import { TPlanet } from './utils/types';
+import { TPlanet, TPlanetsResponse } from './utils/types';
 
 const Init = ({ planets } : { planets : TPlanet[]}) => {
 	const sunRef = useRef<Mesh>(null);
@@ -50,13 +50,16 @@ const Init = ({ planets } : { planets : TPlanet[]}) => {
 
 function App() {
 	const cameraRef = useRef<TPerspectiveCamera>(null);
-    const [data, setData] = useState<any[]>([]);
+    const [data, setData] = useState<TPlanetsResponse | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         setLoading(true);
         axios.get(API_URL)
-            .then(response => setData(response.data))
+            .then(response => {
+                console.log(`API URL: ${API_URL}`, "Response", response.data);
+                setData(response.data)
+            })
             .catch(error => console.error("Axios error:", error))
             .finally(() => {
                 setLoading(false);
@@ -67,11 +70,7 @@ function App() {
         return <div>Loading Planets...</div>;
     }
 
-    let planets = [];
-
-    if (data != null) {
-        planets = data.data?.content;
-    }
+    const planets : TPlanet[] = data?.data.content ?? [];
 
 	return (
 		<div className="canvas-container">

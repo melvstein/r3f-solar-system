@@ -39,3 +39,9 @@ export type TStar = {
     rotationSpeed: number;
     texture: Texture;
 }
+
+export type TPlanetsResponse = {
+    data : {
+        content : TPlanet[];
+    };
+}
