@@ -36,6 +36,6 @@
 
 @layer components {
   .canvas-container {
-    @apply w-screen h-screen;
+    @apply relative w-screen h-screen overflow-visible;
   }
 }

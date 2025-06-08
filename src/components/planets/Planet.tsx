@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { forwardRef, RefObject, useEffect, useRef, useState } from "react";
 import { DoubleSide, Mesh, Texture } from "three";
-import { TAtmosphere, TMoon, TPlanet, TRing } from "../../utils/types";
+import { TAtmosphere, TMoon, TPlanet, TRing } from "../../Types/planetTypes";
 import { adjustSpeed } from "../../utils/configs";
 import { useOrbitControls } from "../../helpers/DevHelpers";
 import { Html, useTexture } from '@react-three/drei';

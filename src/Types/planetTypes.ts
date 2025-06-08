@@ -33,15 +33,17 @@ export type TPlanet = {
     moons?: TMoon[];
 }
 
-export type TStar = {
-    name: string;
-    radius: number;
-    rotationSpeed: number;
-    texture: Texture;
-}
+export type TPlanets = TPlanet[];
 
 export type TPlanetsResponse = {
     data : {
         content : TPlanet[];
     };
+}
+
+export type TStar = {
+    name: string;
+    radius: number;
+    rotationSpeed: number;
+    texture: Texture;
 }

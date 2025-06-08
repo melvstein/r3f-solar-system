@@ -1,5 +1,5 @@
 import { Html, useTexture } from "@react-three/drei";
-import { TStar } from "../../utils/types";
+import { TStar } from "../../Types/planetTypes";
 import { forwardRef, RefObject, useState } from "react";
 import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";

@@ -1,9 +1,9 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import DevHelpers from './helpers/DevHelpers';
 import { PerspectiveCamera as TPerspectiveCamera } from 'three';
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { Loader, OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import Sun from './components/stars/Sun';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import Earth from './components/planets/Earth';
 import { Mesh } from 'three';
 import Mercury from './components/planets/Mercury';
@@ -14,9 +14,10 @@ import Saturn from './components/planets/Saturn';
 import Uranus from './components/planets/Uranus';
 import Neptune from './components/planets/Neptune';
 import GalaxyBackground from './components/GalaxyBackground';
-import axios from 'axios';
-import { API_URL } from './utils/constants';
-import { TPlanet, TPlanetsResponse } from './utils/types';
+import { TPlanet } from './Types/planetTypes';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from './store';
+import { fetchPlanets } from './features/planet/planetSlice';
 
 const Init = ({ planets } : { planets : TPlanet[]}) => {
 	const sunRef = useRef<Mesh>(null);
@@ -50,10 +51,18 @@ const Init = ({ planets } : { planets : TPlanet[]}) => {
 
 function App() {
 	const cameraRef = useRef<TPerspectiveCamera>(null);
-    const [data, setData] = useState<TPlanetsResponse | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    //const [data, setData] = useState<TPlanetsResponse | null>(null);
+    //const [loading, setLoading] = useState<boolean>(true);
+    const dispatch = useDispatch<AppDispatch>();
+    const { planets, loading, error } = useSelector((state : RootState) => state.planets);
+    //console.log("From Redux", planets);
+    //console.log("Planets from Redux", planets);
 
     useEffect(() => {
+        dispatch(fetchPlanets());
+    }, [dispatch]);
+
+    /* useEffect(() => {
         setLoading(true);
         axios.get(API_URL)
             .then(response => {
@@ -64,26 +73,27 @@ function App() {
             .finally(() => {
                 setLoading(false);
             });
-    }, []);
+    }, []); */
 
-    if (loading) {
-        return <div>Loading Planets...</div>;
-    }
+    if (loading) return <p>Loading Planets... <Loader /></p>;
+    if (error) return <p>Error: { error }</p>;
 
-    const planets : TPlanet[] = data?.data.content ?? [];
+    //const planets : TPlanet[] = data?.data.content ?? [];
 
 	return (
 		<div className="canvas-container">
             <Canvas>
-                {/* <CameraCoordinateHelper /> */}
-                <OrbitControls />
-                <DevHelpers />
-                <PerspectiveCamera ref={cameraRef} position={[0, 120, 120]} fov={75} makeDefault />
-                <ambientLight intensity={0.1} />
-                <pointLight position={[0, 0, 0]} intensity={2000} color={0xffffff} />
-                <GalaxyBackground />
+                <Suspense fallback={null}>
+                    {/* <CameraCoordinateHelper /> */}
+                    <OrbitControls />
+                    <DevHelpers />
+                    <PerspectiveCamera ref={cameraRef} position={[0, 120, 120]} fov={75} makeDefault />
+                    <ambientLight intensity={0.1} />
+                    <pointLight position={[0, 0, 0]} intensity={2000} color={0xffffff} />
+                    <GalaxyBackground />
 
-                <Init planets={planets} />
+                    <Init planets={planets} />
+                </Suspense>
             </Canvas>
 		</div>
 	);

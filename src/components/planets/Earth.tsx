@@ -1,5 +1,5 @@
 import { forwardRef, RefObject } from "react";
-import { TPlanet } from "../../utils/types";
+import { TPlanet } from "../../Types/planetTypes";
 import { Mesh } from "three";
 import Planet from "./Planet";
 import { useTexture } from "@react-three/drei";
