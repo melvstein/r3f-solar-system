@@ -1,14 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { TPlanets, TPlanetsResponse } from "../../Types/planetTypes";
 import axios from "axios";
-import { API_URL } from "../../utils/constants";
-
-const PLANETS_ENDPOINT = "/api/v1/planets"
+import { API_URL, PLANETS_API_ENDPOINT } from "../../utils/constants";
 
 export const fetchPlanets = createAsyncThunk(
     'planets/fetchPlanets',
     async () => {
-        const response = await axios.get<TPlanetsResponse>(API_URL + PLANETS_ENDPOINT);
+        const response = await axios.get<TPlanetsResponse>(API_URL + PLANETS_API_ENDPOINT);
         return response.data.data.content;
     }
 );
