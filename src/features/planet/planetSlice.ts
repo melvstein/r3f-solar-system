@@ -3,10 +3,12 @@ import { TPlanets, TPlanetsResponse } from "../../Types/planetTypes";
 import axios from "axios";
 import { API_URL } from "../../utils/constants";
 
+const PLANETS_ENDPOINT = "/api/v1/planets"
+
 export const fetchPlanets = createAsyncThunk(
     'planets/fetchPlanets',
     async () => {
-        const response = await axios.get<TPlanetsResponse>(API_URL);
+        const response = await axios.get<TPlanetsResponse>(API_URL + PLANETS_ENDPOINT);
         return response.data.data.content;
     }
 );
